@@ -123,10 +123,10 @@ var $lastList = $siteList.find('li.last');
 var net = localStorage.getItem('net');
 var netObject = JSON.parse(net);
 var hashMap = netObject || [{
-  logo: 'A',
+  logo: 'https://www.acfun.cn/favicon.ico',
   url: 'https://www.acfun.cn'
 }, {
-  logo: 'B',
+  logo: 'https://www.bilibili.com/favicon.ico',
   url: 'https://www.bilibili.com'
 }];
 
@@ -137,7 +137,7 @@ var simplifyUrl = function simplifyUrl(url) {
 var render = function render() {
   $siteList.find('li:not(.last)').remove();
   hashMap.forEach(function (node, index) {
-    var $li = $("\n        <li>\n            <div class=\"site\">\n                <div class=\"logo\">".concat(node.logo[0], "</div>\n                <div class=\"link\">").concat(simplifyUrl(node.url), "</div>\n                <div class=\"close\">\n                    <svg class=\"icon\" aria-hidden=\"true\">\n                        <use xlink:href=\"#icon-close\"></use>\n                    </svg>\n                </div>\n            </div>\n        </li>")).insertBefore($lastList);
+    var $li = $("\n        <li>\n            <div class=\"site\">\n                <div class=\"logo\">\n                    <img src=".concat(node.logo, " alt=\"\">\n                </div>\n                <div class=\"link\">").concat(simplifyUrl(node.url), "</div>\n                <div class=\"close\">\n                    <svg class=\"icon\" aria-hidden=\"true\">\n                        <use xlink:href=\"#icon-close\"></use>\n                    </svg>\n                </div>\n            </div>\n        </li>")).insertBefore($lastList);
     $li.on('click', function () {
       window.open(node.url);
     });
@@ -153,12 +153,16 @@ render();
 $('.addButton').on('click', function () {
   var url = window.prompt('请输入要添加的网址');
 
+  if (url.indexOf('www.') !== 0) {
+    url = 'www.' + url;
+  }
+
   if (url.indexOf('http') !== 0) {
     url = 'https://' + url;
   }
 
   hashMap.push({
-    logo: simplifyUrl(url)[0].toUpperCase(),
+    logo: url + '/favicon.ico',
     url: url
   });
   render();
@@ -179,4 +183,4 @@ $(document).on('keypress', function (e) {
   }
 });
 },{}]},{},["epB2"], null)
-//# sourceMappingURL=main.7bb838d5.js.map
+//# sourceMappingURL=main.7c61fbb8.js.map

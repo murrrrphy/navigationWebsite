@@ -3,8 +3,8 @@ const $lastList = $siteList.find('li.last')
 const net = localStorage.getItem('net')
 const netObject = JSON.parse(net)
 const hashMap = netObject || [
-    {logo: 'A', url: 'https://www.acfun.cn'},
-    {logo: 'B', url: 'https://www.bilibili.com'}
+    {logo: 'https://www.acfun.cn/favicon.ico', url: 'https://www.acfun.cn'},
+    {logo: 'https://www.bilibili.com/favicon.ico', url: 'https://www.bilibili.com'}
 ]
 
 const simplifyUrl = (url) => {
@@ -15,11 +15,13 @@ const simplifyUrl = (url) => {
 }
 const render = () => {
     $siteList.find('li:not(.last)').remove()
-    hashMap.forEach((node,index) => {
+    hashMap.forEach((node, index) => {
         const $li = $(`
         <li>
             <div class="site">
-                <div class="logo">${node.logo[0]}</div>
+                <div class="logo">
+                    <img src=${node.logo} alt="">
+                </div>
                 <div class="link">${simplifyUrl(node.url)}</div>
                 <div class="close">
                     <svg class="icon" aria-hidden="true">
@@ -28,12 +30,12 @@ const render = () => {
                 </div>
             </div>
         </li>`).insertBefore($lastList)
-        $li.on('click',()=>{
+        $li.on('click', () => {
             window.open(node.url)
         })
         $li.on('click', '.close', (e) => {
             e.stopPropagation()
-            hashMap.splice(index,1)
+            hashMap.splice(index, 1)
             render()
         })
     })
@@ -44,11 +46,14 @@ render()
 $('.addButton')
     .on('click', () => {
         let url = window.prompt('请输入要添加的网址')
+        if (url.indexOf('www.') !== 0) {
+            url = 'www.' + url
+        }
         if (url.indexOf('http') !== 0) {
             url = 'https://' + url
         }
         hashMap.push({
-            logo: simplifyUrl(url)[0].toUpperCase(),
+            logo: url + '/favicon.ico',
             url: url
         })
         render()
@@ -59,10 +64,10 @@ window.onbeforeunload = () => {
     localStorage.setItem('net', string)
 }
 
-$(document).on('keypress',(e)=>{
+$(document).on('keypress', (e) => {
     const {key} = e
-    for(let i = 0; i < hashMap.length; i++){
-        if(hashMap[i].logo.toLowerCase() === key){
+    for (let i = 0; i < hashMap.length; i++) {
+        if (hashMap[i].logo.toLowerCase() === key) {
             window.open(hashMap[i].url)
         }
     }
