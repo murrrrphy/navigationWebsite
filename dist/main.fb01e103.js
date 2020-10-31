@@ -123,11 +123,17 @@ var $lastList = $siteList.find('li.last');
 var net = localStorage.getItem('net');
 var netObject = JSON.parse(net);
 var hashMap = netObject || [{
-  logo: 'https://www.acfun.cn/favicon.ico',
-  url: 'https://www.acfun.cn'
+  logo: 'https://github.com/favicon.ico',
+  url: 'https://github.com'
 }, {
   logo: 'https://www.bilibili.com/favicon.ico',
   url: 'https://www.bilibili.com'
+}, {
+  logo: 'https://bk.tw.lvfukeji.com/favicon.ico',
+  url: 'https://bk.tw.lvfukeji.com'
+}, {
+  logo: 'https://www.zhihu.com/favicon.ico',
+  url: 'https://www.zhihu.com'
 }];
 
 var simplifyUrl = function simplifyUrl(url) {
@@ -179,4 +185,4 @@ $(document).on('keypress', function (e) {
   }
 });
 },{}]},{},["epB2"], null)
-//# sourceMappingURL=main.ae3b1ea1.js.map
+//# sourceMappingURL=main.fb01e103.js.map
