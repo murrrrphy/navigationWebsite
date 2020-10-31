@@ -22,7 +22,7 @@ const render = () => {
         <li>
             <div class="site">
                 <div class="logo">
-                    <img src=${node.logo} alt="">
+                    <img src=${node.logo} alt="" height="32px" width="32px">
                 </div>
                 <div class="link">${simplifyUrl(node.url)}</div>
                 <div class="close">

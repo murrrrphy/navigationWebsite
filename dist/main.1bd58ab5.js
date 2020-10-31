@@ -143,7 +143,7 @@ var simplifyUrl = function simplifyUrl(url) {
 var render = function render() {
   $siteList.find('li:not(.last)').remove();
   hashMap.forEach(function (node, index) {
-    var $li = $("\n        <li>\n            <div class=\"site\">\n                <div class=\"logo\">\n                    <img src=".concat(node.logo, " alt=\"\">\n                </div>\n                <div class=\"link\">").concat(simplifyUrl(node.url), "</div>\n                <div class=\"close\">\n                    <svg class=\"icon\" aria-hidden=\"true\">\n                        <use xlink:href=\"#icon-close\"></use>\n                    </svg>\n                </div>\n            </div>\n        </li>")).insertBefore($lastList);
+    var $li = $("\n        <li>\n            <div class=\"site\">\n                <div class=\"logo\">\n                    <img src=".concat(node.logo, " alt=\"\" height=\"32px\" width=\"32px\">\n                </div>\n                <div class=\"link\">").concat(simplifyUrl(node.url), "</div>\n                <div class=\"close\">\n                    <svg class=\"icon\" aria-hidden=\"true\">\n                        <use xlink:href=\"#icon-close\"></use>\n                    </svg>\n                </div>\n            </div>\n        </li>")).insertBefore($lastList);
     $li.on('click', function () {
       window.open(node.url);
     });
@@ -175,4 +175,4 @@ window.onbeforeunload = function () {
   localStorage.setItem('net', string);
 };
 },{}]},{},["epB2"], null)
-//# sourceMappingURL=main.c7ac18d3.js.map
+//# sourceMappingURL=main.1bd58ab5.js.map
